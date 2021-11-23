@@ -1,0 +1,16 @@
+[
+  {
+    "name": "quesadilla",
+    "description": "normalnie w tortille wrzucasz kuraka i ser i pycha jest",
+    "ingredients": {
+      "0": 2,
+      "1": 3,
+      "3": 5
+    }
+  },
+  {
+    "name": "nie wiem",
+    "description": "nie wiem też jaki opis",
+    "ingredients": {}
+  }
+]
