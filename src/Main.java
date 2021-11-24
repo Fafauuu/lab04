@@ -1,12 +1,18 @@
-import controller.fileHandlers.JsonHandler;
-import dataBase.DataBase;
+import controller.Controller;
+import controller.JsonHandler;
+import dataBase.Database;
+import view.frames.MainFrame;
 
 public class Main {
     public static void main(String[] args) {
-        DataBase dataBase = new DataBase();
-        JsonHandler.readIngredientList(dataBase);
-        JsonHandler.readReceiptList(dataBase);
-        System.out.println(dataBase.getIngredients());
-        System.out.println(dataBase.getReceipts());
+        Database database = Database.getInstance();
+        JsonHandler.readIngredientList();
+        JsonHandler.readReceiptList();
+        System.out.println(database.getIngredients());
+        System.out.println(database.getReceipts());
+        MainFrame mainFrame = new MainFrame();
+        Controller controller = new Controller(mainFrame);
+        mainFrame.getMainMenuPanel().setMainMenuListener(controller);
+        mainFrame.getIngredientsPanel().setIngredientsPanelListener(controller);
     }
 }

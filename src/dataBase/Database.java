@@ -6,13 +6,18 @@ import model.Receipt;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DataBase {
+public class Database {
+    private static final Database instance = new Database();
     private final List<Ingredient> ingredients;
     private final List<Receipt> receipts;
 
-    public DataBase() {
+    private Database() {
         this.ingredients = new ArrayList<>();
         this.receipts = new ArrayList<>();
+    }
+
+    public static Database getInstance(){
+        return instance;
     }
 
     public List<Ingredient> getIngredients() {
