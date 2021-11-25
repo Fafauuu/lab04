@@ -12,7 +12,9 @@ public class Main {
         System.out.println(database.getReceipts());
         MainFrame mainFrame = new MainFrame();
         Controller controller = new Controller(mainFrame);
-        mainFrame.getMainMenuPanel().setMainMenuListener(controller);
-        mainFrame.getIngredientsPanel().setIngredientsPanelListener(controller);
+        mainFrame.getMainMenuPanel().setMenuButtonsListener(controller);
+        mainFrame.getIngredientsPanel().setMenuButtonsListener(controller);
+        mainFrame.getReceiptsPanel().setMenuButtonsListener(controller);
+        mainFrame.getReceiptsPanel().setReceiptsPanelListener(controller);
     }
 }

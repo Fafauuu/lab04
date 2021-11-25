@@ -1,4 +1,4 @@
-package view.panels.ingredients;
+package view.panels.receipts;
 
 import view.components.MenuButton;
 import view.panels.listeners.MenuButtonsActions;
@@ -7,14 +7,15 @@ import view.panels.listeners.MenuButtonsListener;
 import javax.swing.*;
 import java.awt.*;
 
-public class IngredientsPanel extends JPanel {
+public class ReceiptsPanel extends JPanel {
     private MenuButtonsListener menuButtonsListener;
+    private ReceiptsPanelListener receiptsPanelListener;
     private MenuButton goBackButton;
 
-    public IngredientsPanel() {
+    public ReceiptsPanel() {
         this.setLayout(null);
         this.setBounds(0, 0, 800, 800);
-        this.setBackground(Color.CYAN);
+        this.setBackground(Color.ORANGE);
 
         setGoBackButton();
     }
@@ -34,5 +35,9 @@ public class IngredientsPanel extends JPanel {
 
     public void setMenuButtonsListener(MenuButtonsListener menuButtonsListener) {
         this.menuButtonsListener = menuButtonsListener;
+    }
+
+    public void setReceiptsPanelListener(ReceiptsPanelListener receiptsPanelListener) {
+        this.receiptsPanelListener = receiptsPanelListener;
     }
 }

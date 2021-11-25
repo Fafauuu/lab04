@@ -1,12 +1,11 @@
 package controller;
 
-import view.panels.ingredients.IngredientsPanelActions;
-import view.panels.ingredients.IngredientsPanelListener;
-import view.panels.mainMenu.MainMenuActions;
-import view.panels.mainMenu.MainMenuListener;
 import view.frames.MainFrame;
+import view.panels.listeners.MenuButtonsActions;
+import view.panels.listeners.MenuButtonsListener;
+import view.panels.receipts.ReceiptsPanelListener;
 
-public class Controller implements MainMenuListener, IngredientsPanelListener {
+public class Controller implements MenuButtonsListener, ReceiptsPanelListener {
     private final MainFrame mainFrame;
 
     public Controller(MainFrame mainFrame) {
@@ -14,18 +13,21 @@ public class Controller implements MainMenuListener, IngredientsPanelListener {
     }
 
     @Override
-    public void actionChosen(MainMenuActions action) {
+    public void buttonClicked(MenuButtonsActions action) {
         System.out.println(action + " action performed");
-        if (MainMenuActions.INGREDIENTS.equals(action)){
+        if (MenuButtonsActions.INGREDIENTS.equals(action)) {
             mainFrame.setActivePanel(mainFrame.getIngredientsPanel());
+        }
+        if (MenuButtonsActions.MAIN_MENU.equals(action)) {
+            mainFrame.setActivePanel(mainFrame.getMainMenuPanel());
+        }
+        if (MenuButtonsActions.RECEIPTS.equals(action)){
+            mainFrame.setActivePanel(mainFrame.getReceiptsPanel());
         }
     }
 
     @Override
-    public void actionChosen(IngredientsPanelActions action) {
-        System.out.println(action + " action performed");
-        if (IngredientsPanelActions.GO_BACK.equals(action)){
-            mainFrame.setActivePanel(mainFrame.getMainMenuPanel());
-        }
+    public void receiptChosen() {
+
     }
 }
