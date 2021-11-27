@@ -1,8 +1,8 @@
 package view.panels.mainMenu;
 
 import view.components.MenuButton;
-import view.panels.listeners.MenuButtonsActions;
-import view.panels.listeners.MenuButtonsListener;
+import view.listeners.MenuButtonsActions;
+import view.listeners.MenuButtonsListener;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,14 +11,20 @@ public class MainMenuPanel extends JPanel {
     private MenuButtonsListener menuButtonsListener;
     private MenuButton checkIngredientsButton;
     private MenuButton checkReceiptsButton;
+    private MenuButton prepareMealButton;
 
     public MainMenuPanel() {
         this.setLayout(null);
-        this.setBounds(0,0,420,420);
+        refreshSize();
         this.setBackground(Color.RED);
 
         setCheckIngredientsButton();
         setCheckReceiptsButton();
+        setPrepareMealButton();
+    }
+
+    public void refreshSize() {
+        this.setBounds(0,0,420,420);
     }
 
     private void setCheckIngredientsButton() {
@@ -45,6 +51,19 @@ public class MainMenuPanel extends JPanel {
         });
 
         this.add(checkReceiptsButton);
+    }
+
+    private void setPrepareMealButton() {
+        prepareMealButton = new MenuButton(0, 100, 200, 40, "PREPARE MEAL");
+        prepareMealButton.setEnabled(true);
+
+        prepareMealButton.addActionListener(e -> {
+            if (e.getSource() == prepareMealButton && menuButtonsListener != null){
+                menuButtonsListener.buttonClicked(MenuButtonsActions.PREPARE_MENU);
+            }
+        });
+
+        this.add(prepareMealButton);
     }
 
     public void setMenuButtonsListener(MenuButtonsListener menuButtonsListener) {

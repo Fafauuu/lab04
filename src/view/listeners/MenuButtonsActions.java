@@ -1,8 +1,8 @@
-package view.panels.listeners;
+package view.listeners;
 
 public enum MenuButtonsActions {
     MAIN_MENU,
     INGREDIENTS,
     RECEIPTS,
-    PREPARE,
+    PREPARE_MENU,
 }

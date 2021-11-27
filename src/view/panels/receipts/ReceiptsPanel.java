@@ -1,27 +1,35 @@
 package view.panels.receipts;
 
 import view.components.MenuButton;
-import view.panels.listeners.MenuButtonsActions;
-import view.panels.listeners.MenuButtonsListener;
+import view.listeners.MenuButtonsActions;
+import view.listeners.MenuButtonsListener;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class ReceiptsPanel extends JPanel {
+    private final ReceiptSplitPane splitPane;
     private MenuButtonsListener menuButtonsListener;
-    private ReceiptsPanelListener receiptsPanelListener;
     private MenuButton goBackButton;
 
     public ReceiptsPanel() {
+        splitPane = new ReceiptSplitPane();
         this.setLayout(null);
-        this.setBounds(0, 0, 800, 800);
+        refreshSize();
         this.setBackground(Color.ORANGE);
+
+        splitPane.setBounds(0,0,490,380);
+        this.add(splitPane);
 
         setGoBackButton();
     }
 
+    public void refreshSize() {
+        this.setBounds(0, 0, 500, 500);
+    }
+
     private void setGoBackButton() {
-        goBackButton = new MenuButton(0, 0, 200, 40, "GO BACK");
+        goBackButton = new MenuButton(20, 400, 200, 40, "GO BACK");
         goBackButton.setEnabled(true);
 
         goBackButton.addActionListener(e -> {
@@ -37,7 +45,7 @@ public class ReceiptsPanel extends JPanel {
         this.menuButtonsListener = menuButtonsListener;
     }
 
-    public void setReceiptsPanelListener(ReceiptsPanelListener receiptsPanelListener) {
-        this.receiptsPanelListener = receiptsPanelListener;
+    public ReceiptSplitPane getSplitPane() {
+        return splitPane;
     }
 }

@@ -1,6 +1,5 @@
 package model;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class Receipt {
@@ -34,10 +33,6 @@ public class Receipt {
 
     @Override
     public String toString() {
-        return "Receipt{" +
-                "name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", ingredients=" + ingredients +
-                '}';
+        return name;
     }
 }

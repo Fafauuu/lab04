@@ -20,6 +20,15 @@ public class Database {
         return instance;
     }
 
+    public Ingredient getIngredient(int id){
+        for (Ingredient ingredient : ingredients) {
+            if (ingredient.getId() == id){
+                return ingredient;
+            }
+        }
+        throw new RuntimeException("No such ingredient");
+    }
+
     public List<Ingredient> getIngredients() {
         return ingredients;
     }

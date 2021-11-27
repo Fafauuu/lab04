@@ -3,6 +3,7 @@ package view.frames;
 import view.panels.ingredients.IngredientsPanel;
 import view.panels.mainMenu.MainMenuPanel;
 import view.panels.receipts.ReceiptsPanel;
+import view.panels.prepareMeal.PrepareMealPanel;
 
 import javax.swing.*;
 
@@ -11,6 +12,7 @@ public class MainFrame extends JFrame {
     private final MainMenuPanel mainMenuPanel;
     private final IngredientsPanel ingredientsPanel;
     private final ReceiptsPanel receiptsPanel;
+    private final PrepareMealPanel prepareMealPanel;
 
     public MainFrame(){
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -19,15 +21,17 @@ public class MainFrame extends JFrame {
         this.mainMenuPanel = new MainMenuPanel();
         this.ingredientsPanel = new IngredientsPanel();
         this.receiptsPanel = new ReceiptsPanel();
+        this.prepareMealPanel = new PrepareMealPanel();
         setActivePanel(mainMenuPanel);
     }
 
     public void setActivePanel(JPanel panel) {
         if (activePanel != null){
             this.remove(activePanel);
-            mainMenuPanel.setBounds(0,0,420,420);
-            ingredientsPanel.setBounds(0,0,800,800);
-            receiptsPanel.setBounds(0,0,800,800);
+            mainMenuPanel.refreshSize();
+            ingredientsPanel.refreshSize();
+            receiptsPanel.refreshSize();
+            prepareMealPanel.refreshSize();
         }
         this.activePanel = panel;
         this.setSize(panel.getWidth(), panel.getHeight());
@@ -45,5 +49,9 @@ public class MainFrame extends JFrame {
 
     public ReceiptsPanel getReceiptsPanel() {
         return receiptsPanel;
+    }
+
+    public PrepareMealPanel getPrepareMealPanel() {
+        return prepareMealPanel;
     }
 }
