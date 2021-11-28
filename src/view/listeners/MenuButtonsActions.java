@@ -6,5 +6,6 @@ public enum MenuButtonsActions {
     RECEIPTS,
     PREPARE_MENU,
     ADD_INGREDIENT,
-    ADD_RECEIPT
+    ADD_RECEIPT,
+    EDIT_RECEIPT
 }

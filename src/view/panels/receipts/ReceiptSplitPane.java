@@ -89,4 +89,8 @@ public class ReceiptSplitPane extends JSplitPane{
     public JLabel getIngredientsLabel() {
         return ingredientsLabel;
     }
+
+    public Receipt getChosenReceipt(){
+        return list.getSelectedValue();
+    }
 }

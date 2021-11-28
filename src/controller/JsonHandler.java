@@ -8,6 +8,8 @@ import model.Receipt;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +44,28 @@ public class JsonHandler {
         }
     }
 
+    public static void writeIngredientList(List<Ingredient> ingredientList){
+        String json = gson.toJson(ingredientList);
 
+        try{
+            FileWriter fileWriter = new FileWriter("ingredients.json");
+            fileWriter.write(json);
+            fileWriter.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void writeReceiptList(List<Receipt> receiptList){
+        String json = gson.toJson(receiptList);
+
+        try{
+            FileWriter fileWriter = new FileWriter("receipts.json");
+            fileWriter.write(json);
+            fileWriter.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

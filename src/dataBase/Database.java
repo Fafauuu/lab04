@@ -1,5 +1,6 @@
 package dataBase;
 
+import controller.JsonHandler;
 import model.Ingredient;
 import model.Receipt;
 
@@ -52,6 +53,20 @@ public class Database {
     }
 
     public void addReceipt(Receipt receipt){
+        for (int i = 0; i < receipts.size(); i++) {
+            if (receipts.get(i).getName().equals(receipt.getName())){
+                receipts.set(i, receipt);
+                return;
+            }
+        }
         receipts.add(receipt);
+    }
+
+    public void updateIngredientList(){
+        JsonHandler.writeIngredientList(ingredients);
+    }
+
+    public void updateReceiptList(){
+        JsonHandler.writeReceiptList(receipts);
     }
 }

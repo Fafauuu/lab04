@@ -142,6 +142,7 @@ public class AddReceiptPanel extends JPanel {
 
     private void setIngredientsChosenArea() {
         ingredientsChosenArea = new JTextArea();
+        ingredientsChosenArea.setFocusable(false);
         ingredientsChosenArea.setBounds(20,200,300,180);
         descriptionArea.setLineWrap(true);
         refreshIngredientsDescription();
@@ -224,5 +225,12 @@ public class AddReceiptPanel extends JPanel {
 
     public void setAddReceiptListener(AddReceiptListener addReceiptListener) {
         AddReceiptPanel.addReceiptListener = addReceiptListener;
+    }
+
+    public void setIngredientToEdit(Receipt chosenReceipt) {
+        nameField.setText(chosenReceipt.getName());
+        nameField.setFocusable(false);
+        nameField.setEditable(false);
+        nameFilled = true;
     }
 }

@@ -20,9 +20,17 @@
     "name": "Third receipt",
     "description": "Some description of THIRD receipt",
     "ingredients": {
-      "1": 2,
-      "2": 4,
-      "4": 6
+      "1": 7,
+      "4": 5
+    }
+  },
+  {
+    "name": "Fourth receipt",
+    "description": "Some description of FOURTH receipt",
+    "ingredients": {
+      "0": 1,
+      "1": 6,
+      "4": 5
     }
   }
 ]

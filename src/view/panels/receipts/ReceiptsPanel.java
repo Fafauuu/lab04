@@ -12,6 +12,7 @@ public class ReceiptsPanel extends JPanel {
     private static MenuButtonsListener menuButtonsListener;
     private MenuButton goBackButton;
     private MenuButton addReceiptButton;
+    private MenuButton editReceiptButton;
 
     public ReceiptsPanel() {
         splitPane = new ReceiptSplitPane();
@@ -24,10 +25,11 @@ public class ReceiptsPanel extends JPanel {
 
         setGoBackButton();
         setAddReceiptButton();
+        setEditReceiptButton();
     }
 
     public void refreshSize() {
-        this.setBounds(0, 0, 500, 500);
+        this.setBounds(0, 0, 500, 560);
     }
 
     private void setGoBackButton() {
@@ -50,6 +52,17 @@ public class ReceiptsPanel extends JPanel {
         });
 
         this.add(addReceiptButton);
+    }
+
+    private void setEditReceiptButton() {
+        editReceiptButton = new MenuButton(145, 465, 200, 40, "EDIT RECEIPT");
+        editReceiptButton.addActionListener(e -> {
+            if (e.getSource() == editReceiptButton && menuButtonsListener != null && splitPane.getChosenReceipt() != null) {
+                menuButtonsListener.buttonClicked(MenuButtonsActions.EDIT_RECEIPT);
+            }
+        });
+
+        this.add(editReceiptButton);
     }
 
     public void setMenuButtonsListener(MenuButtonsListener menuButtonsListener) {

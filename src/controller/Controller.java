@@ -44,6 +44,11 @@ public class Controller implements
         else if (MenuButtonsActions.ADD_RECEIPT.equals(action)){
             mainFrame.setActivePanel(mainFrame.getAddReceiptPanel());
         }
+        else if (MenuButtonsActions.EDIT_RECEIPT.equals(action)){
+            mainFrame.setActivePanel(mainFrame.getAddReceiptPanel());
+            mainFrame.getAddReceiptPanel()
+                    .setIngredientToEdit(mainFrame.getReceiptsPanel().getSplitPane().getChosenReceipt());
+        }
 
     }
 
@@ -77,6 +82,7 @@ public class Controller implements
         return sb.toString();
     }
 
+    @SuppressWarnings("SingleStatementInBlock")
     @Override
     public void preparationReview(Receipt receipt) {
         System.out.println("PrepareReview: " + receipt);
@@ -110,6 +116,7 @@ public class Controller implements
             Database.getInstance().getIngredient(ingredientID)
                     .reduceAmount(receiptToPrepare.getIngredients().get(ingredientID));
         }
+        Database.getInstance().updateIngredientList();
         mainFrame.getPrepareMealPanel().getSplitPane().getGraphPanel().repaint();
     }
 
@@ -117,6 +124,7 @@ public class Controller implements
     public void addIngredient(String name, Integer amount) {
         System.out.println("Add: " + name);
         Database.getInstance().addIngredient(name, amount);
+        Database.getInstance().updateIngredientList();
         mainFrame.refreshPanels();
     }
 
@@ -124,6 +132,7 @@ public class Controller implements
     public void addReceipt(Receipt receipt) {
         System.out.println("Add: " + receipt);
         Database.getInstance().addReceipt(receipt);
+        Database.getInstance().updateReceiptList();
         mainFrame.refreshPanels();
     }
 }
