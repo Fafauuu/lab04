@@ -17,13 +17,13 @@ public class Database {
         this.receipts = new ArrayList<>();
     }
 
-    public static Database getInstance(){
+    public static Database getInstance() {
         return instance;
     }
 
-    public Ingredient getIngredient(int id){
+    public Ingredient getIngredient(int id) {
         for (Ingredient ingredient : ingredients) {
-            if (ingredient.getId() == id){
+            if (ingredient.getId() == id) {
                 return ingredient;
             }
         }
@@ -34,13 +34,13 @@ public class Database {
         return ingredients;
     }
 
-    public void addIngredient(Ingredient ingredient){
+    public void addIngredient(Ingredient ingredient) {
         ingredients.add(ingredient);
     }
 
-    public void addIngredient(String name, int amount){
+    public void addIngredient(String name, int amount) {
         for (Ingredient ingredient : ingredients) {
-            if (ingredient.getName().equals(name)){
+            if (ingredient.getName().equals(name)) {
                 ingredient.setQuantity(ingredient.getQuantity() + amount);
                 return;
             }
@@ -52,9 +52,9 @@ public class Database {
         return receipts;
     }
 
-    public void addReceipt(Receipt receipt){
+    public void addReceipt(Receipt receipt) {
         for (int i = 0; i < receipts.size(); i++) {
-            if (receipts.get(i).getName().equals(receipt.getName())){
+            if (receipts.get(i).getName().equals(receipt.getName())) {
                 receipts.set(i, receipt);
                 return;
             }
@@ -62,11 +62,11 @@ public class Database {
         receipts.add(receipt);
     }
 
-    public void updateIngredientList(){
+    public void updateIngredientList() {
         JsonHandler.writeIngredientList(ingredients);
     }
 
-    public void updateReceiptList(){
+    public void updateReceiptList() {
         JsonHandler.writeReceiptList(receipts);
     }
 }

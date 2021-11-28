@@ -17,10 +17,12 @@ import java.util.List;
 public class JsonHandler {
     private static final Gson gson = new Gson();
     private static final Database database = Database.getInstance();
-    private static final Type ingredientListType = new TypeToken<ArrayList<Ingredient>>(){}.getType();
-    private static final Type receiptListType = new TypeToken<ArrayList<Receipt>>(){}.getType();
+    private static final Type ingredientListType = new TypeToken<ArrayList<Ingredient>>() {
+    }.getType();
+    private static final Type receiptListType = new TypeToken<ArrayList<Receipt>>() {
+    }.getType();
 
-    public static void readIngredientList(){
+    public static void readIngredientList() {
         List<Ingredient> ingredients;
         try {
             ingredients = gson.fromJson(new FileReader("ingredients.json"), ingredientListType);
@@ -32,7 +34,7 @@ public class JsonHandler {
         }
     }
 
-    public static void readReceiptList(){
+    public static void readReceiptList() {
         List<Receipt> receipts;
         try {
             receipts = gson.fromJson(new FileReader("receipts.json"), receiptListType);
@@ -44,10 +46,10 @@ public class JsonHandler {
         }
     }
 
-    public static void writeIngredientList(List<Ingredient> ingredientList){
+    public static void writeIngredientList(List<Ingredient> ingredientList) {
         String json = gson.toJson(ingredientList);
 
-        try{
+        try {
             FileWriter fileWriter = new FileWriter("ingredients.json");
             fileWriter.write(json);
             fileWriter.flush();
@@ -56,10 +58,10 @@ public class JsonHandler {
         }
     }
 
-    public static void writeReceiptList(List<Receipt> receiptList){
+    public static void writeReceiptList(List<Receipt> receiptList) {
         String json = gson.toJson(receiptList);
 
-        try{
+        try {
             FileWriter fileWriter = new FileWriter("receipts.json");
             fileWriter.write(json);
             fileWriter.flush();

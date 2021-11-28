@@ -6,7 +6,6 @@ import view.listeners.MenuButtonsListener;
 import view.panels.PanelsColor;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class MainMenuPanel extends JPanel {
     private static MenuButtonsListener menuButtonsListener;

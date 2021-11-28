@@ -49,7 +49,6 @@ public class Controller implements
             mainFrame.getAddReceiptPanel()
                     .setIngredientToEdit(mainFrame.getReceiptsPanel().getSplitPane().getChosenReceipt());
         }
-
     }
 
     @Override
@@ -82,7 +81,6 @@ public class Controller implements
         return sb.toString();
     }
 
-    @SuppressWarnings("SingleStatementInBlock")
     @Override
     public void preparationReview(Receipt receipt) {
         System.out.println("PrepareReview: " + receipt);
@@ -92,16 +90,15 @@ public class Controller implements
 
         for (Ingredient ingredient : Database.getInstance().getIngredients()) {
             int updatedAmount;
-            if (receipt.getIngredients().containsKey(ingredient.getId())){
+            if (receipt.getIngredients().containsKey(ingredient.getId())) {
                 updatedAmount = Database.getInstance().getIngredient(ingredient.getId()).getQuantity()
                         - receipt.getIngredients().get(ingredient.getId());
-            }
-            else updatedAmount = ingredient.getQuantity();
+            } else updatedAmount = ingredient.getQuantity();
             updatedIngredientAmount.put(ingredient.getId(), updatedAmount);
             if (updatedAmount < 0) executable = false;
         }
 
-        if (!executable){
+        if (!executable) {
             mainFrame.getPrepareMealPanel().getPrepareMealButton().setEnabled(false);
         } else mainFrame.getPrepareMealPanel().getPrepareMealButton().setEnabled(true);
 

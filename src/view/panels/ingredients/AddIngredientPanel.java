@@ -28,7 +28,6 @@ public class AddIngredientPanel extends JPanel {
         setAmountField();
         setGoBackButton();
         setSaveButton();
-
         refresh();
     }
 
@@ -110,8 +109,8 @@ public class AddIngredientPanel extends JPanel {
         this.add(saveButton);
     }
 
-    private void enableSaveButton(){
-        if (nameFilled && amountFilled){
+    private void enableSaveButton() {
+        if (nameFilled && amountFilled) {
             saveButton.setEnabled(true);
         }
     }

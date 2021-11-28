@@ -25,16 +25,12 @@ public class Ingredient {
         this.quantity = quantity;
     }
 
-    public void reduceAmount(int quantity){
+    public void reduceAmount(int quantity) {
         this.quantity -= quantity;
     }
 
     public int getId() {
         return id;
-    }
-
-    public static int getIngredientCount() {
-        return ingredientCount;
     }
 
     @Override

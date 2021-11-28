@@ -7,7 +7,6 @@ import view.listeners.PrepareMealListener;
 import view.panels.PanelsColor;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class PrepareMealPanel extends JPanel {
     private final PrepareMealSplitPane splitPane;
@@ -22,7 +21,7 @@ public class PrepareMealPanel extends JPanel {
         refreshSize();
         this.setBackground(PanelsColor.PANEL_COLOR);
 
-        splitPane.setBounds(0,0,790,550);
+        splitPane.setBounds(0, 0, 790, 550);
         this.add(splitPane);
 
         setGoToMenuButton();
@@ -30,7 +29,7 @@ public class PrepareMealPanel extends JPanel {
     }
 
     public void refreshSize() {
-        this.setBounds(0,0,800,670);
+        this.setBounds(0, 0, 800, 670);
     }
 
     private void setGoToMenuButton() {

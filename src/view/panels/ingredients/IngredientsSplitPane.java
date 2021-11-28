@@ -9,12 +9,11 @@ import java.awt.*;
 
 public class IngredientsSplitPane extends JSplitPane {
     private final JList<Ingredient> list = new JList<>();
-    private final DefaultListModel<Ingredient> model = new DefaultListModel<>();
     private final JLabel amountLabel = new JLabel();
-    private final JPanel panel = new JPanel();
     private static IngredientListListener ingredientListListener;
 
     public IngredientsSplitPane() {
+        DefaultListModel<Ingredient> model = new DefaultListModel<>();
         list.setModel(model);
         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
@@ -31,6 +30,8 @@ public class IngredientsSplitPane extends JSplitPane {
         this.setLeftComponent(new JScrollPane(list));
 
         amountLabel.setFont(new Font("Arial", Font.PLAIN,18));
+
+        JPanel panel = new JPanel();
         panel.add(amountLabel);
 
         this.setRightComponent(panel);

@@ -18,11 +18,12 @@ public class MainFrame extends JFrame {
     private AddIngredientPanel addIngredientPanel;
     private AddReceiptPanel addReceiptPanel;
 
-    public MainFrame(){
+    public MainFrame() {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setResizable(false);
         refreshPanels();
         setActivePanel(mainMenuPanel);
+        this.setTitle("Cuisine support application");
         this.setVisible(true);
     }
 
@@ -36,7 +37,7 @@ public class MainFrame extends JFrame {
     }
 
     public void setActivePanel(JPanel panel) {
-        if (activePanel != null){
+        if (activePanel != null) {
             this.remove(activePanel);
             mainMenuPanel.refreshSize();
             ingredientsPanel.refreshSize();
