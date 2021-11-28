@@ -5,4 +5,6 @@ public enum MenuButtonsActions {
     INGREDIENTS,
     RECEIPTS,
     PREPARE_MENU,
+    ADD_INGREDIENT,
+    ADD_RECEIPT
 }

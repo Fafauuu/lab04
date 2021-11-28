@@ -13,6 +13,7 @@ public class PrepareMealPanel extends JPanel {
     private MenuButtonsListener menuButtonsListener;
     private PrepareMealListener prepareMealListener;
     private MenuButton goToMenuButton;
+    private MenuButton prepareMealButton;
 
     public PrepareMealPanel() {
         splitPane = new PrepareMealSplitPane();
@@ -20,20 +21,19 @@ public class PrepareMealPanel extends JPanel {
         refreshSize();
         this.setBackground(Color.pink);
 
-        splitPane.setBounds(0,0,790,380);
+        splitPane.setBounds(0,0,790,550);
         this.add(splitPane);
 
         setGoToMenuButton();
+        setPrepareMealButton();
     }
 
     public void refreshSize() {
-        this.setBounds(0,0,800,500);
+        this.setBounds(0,0,800,670);
     }
 
     private void setGoToMenuButton() {
-        goToMenuButton = new MenuButton(20, 400, 200, 40, "GO BACK");
-        goToMenuButton.setEnabled(true);
-
+        goToMenuButton = new MenuButton(20, 570, 200, 40, "GO BACK");
         goToMenuButton.addActionListener(e -> {
             if (e.getSource() == goToMenuButton && menuButtonsListener != null) {
                 menuButtonsListener.buttonClicked(MenuButtonsActions.MAIN_MENU);
@@ -43,8 +43,17 @@ public class PrepareMealPanel extends JPanel {
         this.add(goToMenuButton);
     }
 
-    public PrepareMealSplitPane getSplitPane() {
-        return splitPane;
+    private void setPrepareMealButton() {
+        prepareMealButton = new MenuButton(565, 570, 200, 40, "PREPARE MEAL");
+        prepareMealButton.addActionListener(e -> {
+            if (e.getSource() == prepareMealButton
+                    && menuButtonsListener != null
+                    && splitPane.getReceiptToPrepare() != null) {
+                prepareMealListener.prepare(splitPane.getReceiptToPrepare());
+            }
+        });
+
+        this.add(prepareMealButton);
     }
 
     public void setMenuButtonsListener(MenuButtonsListener menuButtonsListener) {
@@ -54,5 +63,13 @@ public class PrepareMealPanel extends JPanel {
     public void setPrepareMealListener(PrepareMealListener prepareMealListener) {
         this.prepareMealListener = prepareMealListener;
         splitPane.setPrepareMealListener(prepareMealListener);
+    }
+
+    public PrepareMealSplitPane getSplitPane() {
+        return splitPane;
+    }
+
+    public MenuButton getPrepareMealButton() {
+        return prepareMealButton;
     }
 }

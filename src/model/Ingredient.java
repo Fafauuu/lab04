@@ -2,7 +2,7 @@ package model;
 
 public class Ingredient {
     private final String name;
-    private final int quantity;
+    private int quantity;
     private final int id;
     private static int ingredientCount;
 
@@ -19,6 +19,14 @@ public class Ingredient {
 
     public int getQuantity() {
         return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public void reduceAmount(int quantity){
+        this.quantity -= quantity;
     }
 
     public int getId() {

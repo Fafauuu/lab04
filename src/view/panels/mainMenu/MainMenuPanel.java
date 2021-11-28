@@ -29,8 +29,6 @@ public class MainMenuPanel extends JPanel {
 
     private void setCheckIngredientsButton() {
         checkIngredientsButton = new MenuButton(0, 0, 200, 40, "INGREDIENTS");
-        checkIngredientsButton.setEnabled(true);
-
         checkIngredientsButton.addActionListener(e -> {
             if (e.getSource() == checkIngredientsButton && menuButtonsListener != null) {
                 menuButtonsListener.buttonClicked(MenuButtonsActions.INGREDIENTS);
@@ -42,8 +40,6 @@ public class MainMenuPanel extends JPanel {
 
     private void setCheckReceiptsButton() {
         checkReceiptsButton = new MenuButton(0, 50, 200, 40, "RECEIPTS");
-        checkReceiptsButton.setEnabled(true);
-
         checkReceiptsButton.addActionListener(e -> {
             if (e.getSource() == checkReceiptsButton && menuButtonsListener != null) {
                 menuButtonsListener.buttonClicked(MenuButtonsActions.RECEIPTS);
@@ -55,8 +51,6 @@ public class MainMenuPanel extends JPanel {
 
     private void setPrepareMealButton() {
         prepareMealButton = new MenuButton(0, 100, 200, 40, "PREPARE MEAL");
-        prepareMealButton.setEnabled(true);
-
         prepareMealButton.addActionListener(e -> {
             if (e.getSource() == prepareMealButton && menuButtonsListener != null){
                 menuButtonsListener.buttonClicked(MenuButtonsActions.PREPARE_MENU);

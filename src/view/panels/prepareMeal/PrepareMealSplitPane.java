@@ -10,8 +10,9 @@ import java.awt.*;
 public class PrepareMealSplitPane extends JSplitPane {
     private final JList<Receipt> list = new JList<>();
     private final DefaultListModel<Receipt> model = new DefaultListModel<>();
-    private final JPanel panel = new JPanel();
+    private final GraphPanel graphPanel = new GraphPanel();
     private PrepareMealListener prepareMealListener;
+    private Receipt receiptToPrepare;
 
     public PrepareMealSplitPane() {
         list.setModel(model);
@@ -23,11 +24,19 @@ public class PrepareMealSplitPane extends JSplitPane {
             Receipt receiptChosen = list.getSelectedValue();
             if (prepareMealListener != null && !e.getValueIsAdjusting()){
                 prepareMealListener.preparationReview(receiptChosen);
+                receiptToPrepare = receiptChosen;
             }
         });
         this.setLeftComponent(new JScrollPane(list));
-        panel.setLayout(null);
-        this.setRightComponent(panel);
+        this.setRightComponent(graphPanel);
+    }
+
+    public Receipt getReceiptToPrepare() {
+        return receiptToPrepare;
+    }
+
+    public GraphPanel getGraphPanel() {
+        return graphPanel;
     }
 
     public void setPrepareMealListener(PrepareMealListener prepareMealListener) {

@@ -5,12 +5,18 @@ import model.Ingredient;
 import model.Receipt;
 import view.frames.MainFrame;
 import view.listeners.*;
+import view.panels.prepareMeal.GraphPanel;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Controller implements
         MenuButtonsListener,
         IngredientListListener,
         ReceiptListListener,
-        PrepareMealListener {
+        PrepareMealListener,
+        AddIngredientListener,
+        AddReceiptListener {
     private final MainFrame mainFrame;
 
     public Controller(MainFrame mainFrame) {
@@ -23,15 +29,22 @@ public class Controller implements
         if (MenuButtonsActions.INGREDIENTS.equals(action)) {
             mainFrame.setActivePanel(mainFrame.getIngredientsPanel());
         }
-        if (MenuButtonsActions.MAIN_MENU.equals(action)) {
+        else if (MenuButtonsActions.MAIN_MENU.equals(action)) {
             mainFrame.setActivePanel(mainFrame.getMainMenuPanel());
         }
-        if (MenuButtonsActions.RECEIPTS.equals(action)) {
+        else if (MenuButtonsActions.RECEIPTS.equals(action)) {
             mainFrame.setActivePanel(mainFrame.getReceiptsPanel());
         }
-        if (MenuButtonsActions.PREPARE_MENU.equals(action)) {
+        else if (MenuButtonsActions.PREPARE_MENU.equals(action)) {
             mainFrame.setActivePanel(mainFrame.getPrepareMealPanel());
         }
+        else if (MenuButtonsActions.ADD_INGREDIENT.equals(action)) {
+            mainFrame.setActivePanel(mainFrame.getAddIngredientPanel());
+        }
+        else if (MenuButtonsActions.ADD_RECEIPT.equals(action)){
+            mainFrame.setActivePanel(mainFrame.getAddReceiptPanel());
+        }
+
     }
 
     @Override
@@ -67,5 +80,46 @@ public class Controller implements
     @Override
     public void preparationReview(Receipt receipt) {
         System.out.println("PrepareReview: " + receipt);
+        GraphPanel graphPanel = mainFrame.getPrepareMealPanel().getSplitPane().getGraphPanel();
+        Map<Integer, Integer> updatedIngredientAmount = new HashMap<>();
+        boolean executable = true;
+
+        for (Ingredient ingredient : Database.getInstance().getIngredients()) {
+            int updatedAmount;
+            if (receipt.getIngredients().containsKey(ingredient.getId())){
+                updatedAmount = Database.getInstance().getIngredient(ingredient.getId()).getQuantity()
+                        - receipt.getIngredients().get(ingredient.getId());
+            }
+            else updatedAmount = ingredient.getQuantity();
+            updatedIngredientAmount.put(ingredient.getId(), updatedAmount);
+            if (updatedAmount < 0) executable = false;
+        }
+
+        if (!executable){
+            mainFrame.getPrepareMealPanel().getPrepareMealButton().setEnabled(false);
+        } else mainFrame.getPrepareMealPanel().getPrepareMealButton().setEnabled(true);
+
+        graphPanel.setUpdatedIngredientAmount(updatedIngredientAmount);
+        graphPanel.repaint();
+    }
+
+    @Override
+    public void prepare(Receipt receiptToPrepare) {
+        System.out.println("Prepare: " + receiptToPrepare);
+        for (Integer ingredientID : receiptToPrepare.getIngredients().keySet()) {
+            Database.getInstance().getIngredient(ingredientID)
+                    .reduceAmount(receiptToPrepare.getIngredients().get(ingredientID));
+        }
+        mainFrame.getPrepareMealPanel().getSplitPane().getGraphPanel().repaint();
+    }
+
+    @Override
+    public void addIngredient(Ingredient ingredient) {
+        System.out.println("Add: " + ingredient);
+    }
+
+    @Override
+    public void addReceipt(Receipt receipt) {
+        System.out.println("Add: " + receipt);
     }
 }
