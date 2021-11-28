@@ -183,8 +183,9 @@ public class AddReceiptPanel extends JPanel {
         goBackButton = new MenuButton(20, 400, 200, 40, "GO BACK");
         goBackButton.addActionListener(e -> {
             if (e.getSource() == goBackButton && menuButtonsListener != null) {
-                menuButtonsListener.buttonClicked(MenuButtonsActions.RECEIPTS);
                 ingredientsChosen.clear();
+                refreshIngredientsDescription();
+                menuButtonsListener.buttonClicked(MenuButtonsActions.RECEIPTS);
             }
         });
 

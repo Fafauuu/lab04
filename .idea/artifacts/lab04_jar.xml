@@ -3,6 +3,11 @@
     <output-path>$PROJECT_DIR$/out/artifacts/lab04_jar</output-path>
     <root id="archive" name="lab04.jar">
       <element id="module-output" name="lab04" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/miglayout-swing.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/miglayout-core.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.8.9/gson-2.8.9.jar" path-in-jar="/" />
+      <element id="library" level="project" name="google.code.gson" />
+      <element id="library" level="project" name="MigLayout" />
     </root>
   </artifact>
 </component>
