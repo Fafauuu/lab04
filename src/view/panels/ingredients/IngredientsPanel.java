@@ -3,13 +3,13 @@ package view.panels.ingredients;
 import view.components.MenuButton;
 import view.listeners.MenuButtonsActions;
 import view.listeners.MenuButtonsListener;
+import view.panels.PanelsColor;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class IngredientsPanel extends JPanel {
     private final IngredientsSplitPane splitPane;
-    private MenuButtonsListener menuButtonsListener;
+    private static MenuButtonsListener menuButtonsListener;
     private MenuButton goBackButton;
     private MenuButton addIngredientButton;
 
@@ -17,7 +17,7 @@ public class IngredientsPanel extends JPanel {
         splitPane = new IngredientsSplitPane();
         this.setLayout(null);
         refreshSize();
-        this.setBackground(Color.CYAN);
+        this.setBackground(PanelsColor.PANEL_COLOR);
 
         splitPane.setBounds(0,0,390,280);
         this.add(splitPane);
@@ -53,7 +53,7 @@ public class IngredientsPanel extends JPanel {
     }
 
     public void setMenuButtonsListener(MenuButtonsListener menuButtonsListener) {
-        this.menuButtonsListener = menuButtonsListener;
+        IngredientsPanel.menuButtonsListener = menuButtonsListener;
     }
 
     public IngredientsSplitPane getSplitPane() {

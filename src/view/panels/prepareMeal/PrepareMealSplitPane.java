@@ -11,7 +11,7 @@ public class PrepareMealSplitPane extends JSplitPane {
     private final JList<Receipt> list = new JList<>();
     private final DefaultListModel<Receipt> model = new DefaultListModel<>();
     private final GraphPanel graphPanel = new GraphPanel();
-    private PrepareMealListener prepareMealListener;
+    private static PrepareMealListener prepareMealListener;
     private Receipt receiptToPrepare;
 
     public PrepareMealSplitPane() {
@@ -40,6 +40,6 @@ public class PrepareMealSplitPane extends JSplitPane {
     }
 
     public void setPrepareMealListener(PrepareMealListener prepareMealListener) {
-        this.prepareMealListener = prepareMealListener;
+        PrepareMealSplitPane.prepareMealListener = prepareMealListener;
     }
 }

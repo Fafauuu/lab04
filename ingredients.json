@@ -1,18 +1,22 @@
 [
   {
-    "name": "kurczak",
+    "name": "Product_1 ",
     "quantity": 10
   },
   {
-    "name": "tortilla",
-    "quantity": 4
+    "name": "Product_2",
+    "quantity": 6
   },
   {
-    "name": "kurczak",
+    "name": "Product_3",
     "quantity": 18
   },
   {
-    "name": "ser",
+    "name": "Product_4",
     "quantity": 20
+  },
+  {
+    "name": "Product_5",
+    "quantity": 12
   }
 ]

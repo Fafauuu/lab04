@@ -37,6 +37,16 @@ public class Database {
         ingredients.add(ingredient);
     }
 
+    public void addIngredient(String name, int amount){
+        for (Ingredient ingredient : ingredients) {
+            if (ingredient.getName().equals(name)){
+                ingredient.setQuantity(ingredient.getQuantity() + amount);
+                return;
+            }
+        }
+        ingredients.add(new Ingredient(name, amount));
+    }
+
     public List<Receipt> getReceipts() {
         return receipts;
     }

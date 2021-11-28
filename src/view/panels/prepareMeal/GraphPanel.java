@@ -2,6 +2,7 @@ package view.panels.prepareMeal;
 
 import dataBase.Database;
 import model.Ingredient;
+import view.panels.PanelsColor;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,7 +16,7 @@ public class GraphPanel extends JPanel {
     public GraphPanel() {
         this.ingredients = Database.getInstance().getIngredients();
         this.setLayout(null);
-        this.setBackground(Color.lightGray);
+        this.setBackground(new Color(0xD0D0D0));
     }
 
     public void setUpdatedIngredientAmount(Map<Integer, Integer> updatedIngredientAmount) {
@@ -36,7 +37,7 @@ public class GraphPanel extends JPanel {
 
         for (int i = 0; i < ingredients.size(); i++) {
             int y = 10 * (50 - ingredients.get(i).getQuantity());
-            g.setFont(new Font("Arial", Font.PLAIN,15));
+            g.setFont(new Font("Arial", Font.PLAIN,11));
             g.drawString(ingredients.get(i).toString(), i * 60 +50, y - 7);
         }
 

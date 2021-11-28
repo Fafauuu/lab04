@@ -114,12 +114,16 @@ public class Controller implements
     }
 
     @Override
-    public void addIngredient(Ingredient ingredient) {
-        System.out.println("Add: " + ingredient);
+    public void addIngredient(String name, Integer amount) {
+        System.out.println("Add: " + name);
+        Database.getInstance().addIngredient(name, amount);
+        mainFrame.refreshPanels();
     }
 
     @Override
     public void addReceipt(Receipt receipt) {
         System.out.println("Add: " + receipt);
+        Database.getInstance().addReceipt(receipt);
+        mainFrame.refreshPanels();
     }
 }

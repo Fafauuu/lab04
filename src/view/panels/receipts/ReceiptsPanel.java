@@ -3,13 +3,13 @@ package view.panels.receipts;
 import view.components.MenuButton;
 import view.listeners.MenuButtonsActions;
 import view.listeners.MenuButtonsListener;
+import view.panels.PanelsColor;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class ReceiptsPanel extends JPanel {
     private final ReceiptSplitPane splitPane;
-    private MenuButtonsListener menuButtonsListener;
+    private static MenuButtonsListener menuButtonsListener;
     private MenuButton goBackButton;
     private MenuButton addReceiptButton;
 
@@ -17,7 +17,7 @@ public class ReceiptsPanel extends JPanel {
         splitPane = new ReceiptSplitPane();
         this.setLayout(null);
         refreshSize();
-        this.setBackground(Color.ORANGE);
+        this.setBackground(PanelsColor.PANEL_COLOR);
 
         splitPane.setBounds(0,0,490,380);
         this.add(splitPane);
@@ -53,7 +53,7 @@ public class ReceiptsPanel extends JPanel {
     }
 
     public void setMenuButtonsListener(MenuButtonsListener menuButtonsListener) {
-        this.menuButtonsListener = menuButtonsListener;
+        ReceiptsPanel.menuButtonsListener = menuButtonsListener;
     }
 
     public ReceiptSplitPane getSplitPane() {

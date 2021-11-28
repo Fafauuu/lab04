@@ -12,10 +12,11 @@ public class IngredientsSplitPane extends JSplitPane {
     private final DefaultListModel<Ingredient> model = new DefaultListModel<>();
     private final JLabel amountLabel = new JLabel();
     private final JPanel panel = new JPanel();
-    private IngredientListListener ingredientListListener;
+    private static IngredientListListener ingredientListListener;
 
     public IngredientsSplitPane() {
         list.setModel(model);
+        list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         model.addAll(Database.getInstance().getIngredients());
         list.setFont(new Font("Arial", Font.BOLD,20));
@@ -31,11 +32,12 @@ public class IngredientsSplitPane extends JSplitPane {
 
         amountLabel.setFont(new Font("Arial", Font.PLAIN,18));
         panel.add(amountLabel);
+
         this.setRightComponent(panel);
     }
 
     public void setIngredientListListener(IngredientListListener ingredientListListener) {
-        this.ingredientListListener = ingredientListListener;
+        IngredientsSplitPane.ingredientListListener = ingredientListListener;
     }
 
     public JLabel getAmountLabel() {

@@ -4,23 +4,25 @@ import view.components.MenuButton;
 import view.listeners.AddIngredientListener;
 import view.listeners.MenuButtonsActions;
 import view.listeners.MenuButtonsListener;
+import view.panels.PanelsColor;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
 public class AddIngredientPanel extends JPanel {
-    private MenuButtonsListener menuButtonsListener;
-    private AddIngredientListener addIngredientListener;
+    private static MenuButtonsListener menuButtonsListener;
+    private static AddIngredientListener addIngredientListener;
     private MenuButton goBackButton;
     private MenuButton saveButton;
     private JTextField nameField;
     private JTextField amountField;
+    private boolean nameFilled = false;
+    private boolean amountFilled = false;
 
     public AddIngredientPanel() {
         this.setLayout(null);
-        this.setBackground(Color.CYAN);
+        this.setBackground(PanelsColor.PANEL_COLOR);
 
         setNameField();
         setAmountField();
@@ -46,6 +48,8 @@ public class AddIngredientPanel extends JPanel {
             @Override
             public void focusGained(FocusEvent e) {
                 nameField.setText("");
+                nameFilled = true;
+                enableSaveButton();
             }
 
             @Override
@@ -65,6 +69,8 @@ public class AddIngredientPanel extends JPanel {
             @Override
             public void focusGained(FocusEvent e) {
                 amountField.setText("");
+                amountFilled = true;
+                enableSaveButton();
             }
 
             @Override
@@ -89,20 +95,32 @@ public class AddIngredientPanel extends JPanel {
 
     private void setSaveButton() {
         saveButton = new MenuButton(215, 300, 150, 40, "SAVE");
+        saveButton.setEnabled(false);
         saveButton.addActionListener(e -> {
             if (e.getSource() == saveButton && addIngredientListener != null) {
-//                addIngredientListener.addIngredient();
+                addIngredientListener.addIngredient(nameField.getText(), Integer.valueOf(amountField.getText()));
+                this.remove(nameField);
+                setNameField();
+                this.remove(amountField);
+                setAmountField();
+                saveButton.setEnabled(false);
             }
         });
 
         this.add(saveButton);
     }
 
+    private void enableSaveButton(){
+        if (nameFilled && amountFilled){
+            saveButton.setEnabled(true);
+        }
+    }
+
     public void setMenuButtonsListener(MenuButtonsListener menuButtonsListener) {
-        this.menuButtonsListener = menuButtonsListener;
+        AddIngredientPanel.menuButtonsListener = menuButtonsListener;
     }
 
     public void setAddIngredientListener(AddIngredientListener addIngredientListener) {
-        this.addIngredientListener = addIngredientListener;
+        AddIngredientPanel.addIngredientListener = addIngredientListener;
     }
 }

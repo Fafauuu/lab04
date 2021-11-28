@@ -15,10 +15,11 @@ public class ReceiptSplitPane extends JSplitPane{
     private final JLabel ingredientsTitle = new JLabel();
     private final JLabel ingredientsLabel = new JLabel();
     private final JPanel panel = new JPanel();
-    private ReceiptListListener receiptListListener;
+    private static ReceiptListListener receiptListListener;
 
     public ReceiptSplitPane() {
         list.setModel(model);
+        list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         model.addAll(Database.getInstance().getReceipts());
         list.setFont(new Font("Arial", Font.BOLD,20));
@@ -70,7 +71,7 @@ public class ReceiptSplitPane extends JSplitPane{
     }
 
     public void setReceiptListListener(ReceiptListListener ingredientListListener) {
-        this.receiptListListener = ingredientListListener;
+        receiptListListener = ingredientListListener;
     }
 
     public JLabel getDescriptionTitle() {

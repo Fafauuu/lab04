@@ -11,24 +11,28 @@ import javax.swing.*;
 
 public class MainFrame extends JFrame {
     private JPanel activePanel;
-    private final MainMenuPanel mainMenuPanel;
-    private final IngredientsPanel ingredientsPanel;
-    private final ReceiptsPanel receiptsPanel;
-    private final PrepareMealPanel prepareMealPanel;
-    private final AddIngredientPanel addIngredientPanel;
-    private final AddReceiptPanel addReceiptPanel;
+    private MainMenuPanel mainMenuPanel;
+    private IngredientsPanel ingredientsPanel;
+    private ReceiptsPanel receiptsPanel;
+    private PrepareMealPanel prepareMealPanel;
+    private AddIngredientPanel addIngredientPanel;
+    private AddReceiptPanel addReceiptPanel;
 
     public MainFrame(){
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setResizable(false);
+        refreshPanels();
+        setActivePanel(mainMenuPanel);
+        this.setVisible(true);
+    }
+
+    public void refreshPanels() {
         this.mainMenuPanel = new MainMenuPanel();
         this.ingredientsPanel = new IngredientsPanel();
         this.receiptsPanel = new ReceiptsPanel();
         this.prepareMealPanel = new PrepareMealPanel();
         this.addIngredientPanel = new AddIngredientPanel();
         this.addReceiptPanel = new AddReceiptPanel();
-        setActivePanel(mainMenuPanel);
-        this.setVisible(true);
     }
 
     public void setActivePanel(JPanel panel) {

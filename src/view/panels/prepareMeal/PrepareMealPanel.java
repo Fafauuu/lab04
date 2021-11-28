@@ -4,14 +4,15 @@ import view.components.MenuButton;
 import view.listeners.MenuButtonsActions;
 import view.listeners.MenuButtonsListener;
 import view.listeners.PrepareMealListener;
+import view.panels.PanelsColor;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class PrepareMealPanel extends JPanel {
     private final PrepareMealSplitPane splitPane;
-    private MenuButtonsListener menuButtonsListener;
-    private PrepareMealListener prepareMealListener;
+    private static MenuButtonsListener menuButtonsListener;
+    private static PrepareMealListener prepareMealListener;
     private MenuButton goToMenuButton;
     private MenuButton prepareMealButton;
 
@@ -19,7 +20,7 @@ public class PrepareMealPanel extends JPanel {
         splitPane = new PrepareMealSplitPane();
         this.setLayout(null);
         refreshSize();
-        this.setBackground(Color.pink);
+        this.setBackground(PanelsColor.PANEL_COLOR);
 
         splitPane.setBounds(0,0,790,550);
         this.add(splitPane);
@@ -57,11 +58,11 @@ public class PrepareMealPanel extends JPanel {
     }
 
     public void setMenuButtonsListener(MenuButtonsListener menuButtonsListener) {
-        this.menuButtonsListener = menuButtonsListener;
+        PrepareMealPanel.menuButtonsListener = menuButtonsListener;
     }
 
     public void setPrepareMealListener(PrepareMealListener prepareMealListener) {
-        this.prepareMealListener = prepareMealListener;
+        PrepareMealPanel.prepareMealListener = prepareMealListener;
         splitPane.setPrepareMealListener(prepareMealListener);
     }
 
